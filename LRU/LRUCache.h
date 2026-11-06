@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <list>
+#include <unordered_map>
 
 class LRUCache
 {
@@ -20,4 +22,13 @@ public:
 	// If the cache is full, remove the least recently used element.
 	// Inserting or updating an element makes it the most recently used element.
 	void put(int key, std::string value);
+
+private: 
+	//Used before the 0(1) refractor
+	//std::unordered_map<int, std::string> cacheMap; 
+
+	std::list<std::pair<int, std::string>> cacheList;
+	std::unordered_map<int, std::list<std::pair<int, std::string>>::iterator> cacheMapIterator;
+
+	int cacheCapacity;
 };
